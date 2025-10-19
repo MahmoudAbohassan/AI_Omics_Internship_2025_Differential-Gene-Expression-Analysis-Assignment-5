@@ -1,49 +1,52 @@
-Differential Gene Expression Analysis — GSE13911
-Project Overview
+🧬 Differential Gene Expression Analysis — GSE13911
+📖 Description
 
-This project performs a Differential Gene Expression (DGE) analysis on the publicly available microarray dataset GSE13911, which investigates gene expression differences between gastric cancer and normal gastric tissue samples.
-The workflow follows a standard bioinformatics pipeline using the Limma package in R.
+This repository contains R code and results for analyzing the GSE13911 microarray dataset.
+The goal is to identify differentially expressed genes (DEGs) between gastric cancer and normal gastric tissue samples using the Limma pipeline.
 
-⚙️ Workflow Summary
+⚙️ Workflow
 
-Dataset Import:
-The dataset GSE13911 was downloaded using the GEOquery package.
+Downloaded dataset GSE13911 using GEOquery.
 
-Annotation:
-Probe IDs were mapped to gene symbols using the annotation package
-hgu133plus2.db.
+Annotated probe IDs to gene symbols using hgu133plus2.db.
 
-Handling Duplicate Probes:
-Multiple probes mapped to the same gene were averaged to obtain a single representative expression value for each gene.
+Averaged multiple probes mapping to the same gene.
 
-Differential Expression Analysis:
-The limma package was used to identify differentially expressed genes (DEGs) between cancer and normal samples.
+Performed differential expression analysis (cancer vs normal) using limma.
 
-Visualization:
+Created:
 
-A Volcano Plot was generated to display significantly upregulated and downregulated genes.
+Volcano plot showing up/downregulated genes
 
-A Heatmap of the top 25 DEGs was created to visualize gene expression clustering.
-
-Result Export:
-DEG results were saved as CSV files, and plots were exported as PNG images in the Result_Plots folder.
+Heatmap for the top 25 DEGs
 
 📊 Results Summary
 
-Dataset Accession ID: GSE13911
+Accession ID: GSE13911
 
-Annotation Package Used: hgu133plus2.db
+Annotation package: hgu133plus2.db
 
-Comparison Performed: cancer_vs_normal
+Comparison: cancer_vs_normal
 
-Metric	Value
-Upregulated Genes	~640
-Downregulated Genes	~520
-Adjusted p-value cutoff	< 0.05
-Log2 Fold Change cutoff	> 1
+Upregulated genes: ~640
 
-Explanation:
+Downregulated genes: ~520
 
-Several probes mapped to the same gene due to targeting different gene regions or isoforms.
+Duplicate probes were handled by averaging their expression values per gene.
 
-Duplicate probes were resolved by averaging their expression values.
+📂 Outputs
+File	Description
+Results/DEG_results_complete.csv	All DEGs with logFC and p-values
+Results/Upregulated_DEGs.csv	Upregulated genes
+Results/Downregulated_DEGs.csv	Downregulated genes
+Result_Plots/volcano_plot_GSE13911.png	Volcano plot
+Result_Plots/heatmap_top25_DEGs.png	Heatmap of top 25 DEGs
+🧰 Required Packages
+library(GEOquery)
+library(limma)
+library(AnnotationDbi)
+library(hgu133plus2.db)
+library(pheatmap)
+library(ggplot2)
+library(dplyr)
+library(tibble)
